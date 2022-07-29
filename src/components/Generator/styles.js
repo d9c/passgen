@@ -11,24 +11,24 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
   width: 500px;
 `;
 
-export const Password = styled.input`
-  text-align: center;
-  font-family: "JetBrains Mono";
-  font-size: 16px;
-  color: #ffffff;
+export const Password = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   background-color: #606164;
   border: none;
   border-radius: 5px;
-
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
-  width: 80%;
+  width: 100%;
   height: 40px;
+  padding: 10px;
 
   cursor: pointer;
 
@@ -37,8 +37,10 @@ export const Password = styled.input`
     transition: 100ms ease-in-out;
   }
 
-  &:focus {
-    outline: none;
+  span {
+    font-family: "JetBrains Mono";
+    font-size: 16px;
+    color: #ffffff;
   }
 `;
 
@@ -62,7 +64,20 @@ export const Option = styled.div`
 
 export const Slider = styled(MuiSlider)`
   && {
-    width: 150px;
+    width: 200px;
+
+    .MuiSlider-valueLabel {
+      background-color: #ffffff;
+
+      span {
+        color: #000000;
+      }
+    }
+
+    .MuiSlider-thumb:hover,
+    .Mui-focusVisible {
+      box-shadow: 0px 0px 0px 10px rgba(100, 100, 100, 0.2);
+    }
   }
 `;
 
@@ -72,6 +87,10 @@ export const Checkbox = styled(MuiCheckBox)`
 
     &.Mui-checked {
       color: #ffffff;
+    }
+
+    &:hover {
+      background-color: rgba(100, 100, 100, 0.2);
     }
   }
 `;

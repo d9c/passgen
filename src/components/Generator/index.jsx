@@ -40,17 +40,18 @@ export const Generator = () => {
     setPassword(pwd);
   };
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     if (password) {
-      e.target.select();
-      navigator.clipboard.writeText(e.target.value);
+      navigator.clipboard.writeText(password);
       setOpen(true);
     }
   };
 
   return (
     <S.Container>
-      <S.Password type="text" onClick={handleClick} value={password} readOnly />
+      <S.Password onClick={handleClick}>
+        <span>{password}</span>
+      </S.Password>
       <S.Options>
         <S.Option>
           <span>Length</span>
@@ -64,28 +65,28 @@ export const Generator = () => {
           />
         </S.Option>
         <S.Option>
-          <span>Use uppercase letters</span>
+          <span>Uppercase letters</span>
           <S.Checkbox
             checked={useUppercase}
             onChange={(e) => setUseUppercase(e.target.checked)}
           />
         </S.Option>
         <S.Option>
-          <span>Use lowercase letters</span>
+          <span>Lowercase letters</span>
           <S.Checkbox
             checked={useLowerCase}
             onChange={(e) => setUseLowerCase(e.target.checked)}
           />
         </S.Option>
         <S.Option>
-          <span>User numbers</span>
+          <span>Numbers</span>
           <S.Checkbox
             checked={useNumbers}
             onChange={(e) => setUseNumbers(e.target.checked)}
           />
         </S.Option>
         <S.Option>
-          <span>Use symbols</span>
+          <span>Symbols</span>
           <S.Checkbox
             checked={useSymbols}
             onChange={(e) => setUseSymbols(e.target.checked)}
