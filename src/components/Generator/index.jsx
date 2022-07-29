@@ -40,7 +40,7 @@ export const Generator = () => {
     setPassword(pwd);
   };
 
-  const handleClick = () => {
+  const copyToClipboard = () => {
     if (password) {
       navigator.clipboard.writeText(password);
       setOpen(true);
@@ -49,7 +49,7 @@ export const Generator = () => {
 
   return (
     <S.Container>
-      <S.Password onClick={handleClick}>
+      <S.Password onClick={copyToClipboard}>
         <span>{password}</span>
       </S.Password>
       <S.Options>
