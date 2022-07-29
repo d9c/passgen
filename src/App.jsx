@@ -1,9 +1,16 @@
 import React from "react";
 
+import * as S from "./App.styles";
+
+import { Generator } from "./components/Generator";
+
+import { GlobalStyle } from "./styles/global";
+
 export const App = () => {
   return (
-    <div className="app">
-      <span>app</span>
-    </div>
+    <S.Container>
+      <Generator />
+      <GlobalStyle />
+    </S.Container>
   );
 };
