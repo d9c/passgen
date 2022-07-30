@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Checkbox, Snackbar } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { ContentCopy as CopyIcon } from "@mui/icons-material";
 
 import * as S from "./styles";
 
@@ -21,12 +22,12 @@ export const Generator = () => {
     const upperCase = useUppercase ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : "";
     const lowerCase = useLowerCase ? "abcdefghijklmnopqrstuvwxyz" : "";
     const numbers = useNumbers ? "1234567890" : "";
-    const symbols = useSymbols ? "!@#$%^&*~()[]{}<>;:,." : "";
+    const symbols = useSymbols ? "!@#$%^&*~()[]{}" : "";
     const chars = `${upperCase}${lowerCase}${numbers}${symbols}`;
 
     let pwd = "";
 
-    for (let i = 0; i < passwordLength; i++) {
+    for (let i = 0; pwd.length < passwordLength; i++) {
       const index = Math.floor(Math.random() * chars.length);
 
       if (chars && noRepeat) {
@@ -52,59 +53,57 @@ export const Generator = () => {
 
   return (
     <S.Container>
-      <S.Password type="button" variant="contained" onClick={copyToClipboard}>
-        {password}
+      <S.Password>
+        <S.Label>{password}</S.Label>
+        <IconButton onClick={copyToClipboard}>
+          <CopyIcon color="secondary" />
+        </IconButton>
       </S.Password>
       <S.Options>
         <S.Option>
-          <span>Length</span>
+          <S.Label>Length</S.Label>
           <S.Slider
             size="small"
             valueLabelDisplay="auto"
-            min={6}
-            max={50}
+            min={1}
+            max={40}
             value={passwordLength}
             onChange={(e) => setPasswordLength(e.target.value)}
           />
         </S.Option>
         <S.Option>
-          <span>Uppercase letters</span>
-          <Checkbox
+          <S.Label>Uppercase letters</S.Label>
+          <S.Checkbox
             checked={useUppercase}
             onChange={(e) => setUseUppercase(e.target.checked)}
-            color="secondary"
           />
         </S.Option>
         <S.Option>
-          <span>Lowercase letters</span>
-          <Checkbox
+          <S.Label>Lowercase letters</S.Label>
+          <S.Checkbox
             checked={useLowerCase}
             onChange={(e) => setUseLowerCase(e.target.checked)}
-            color="secondary"
           />
         </S.Option>
         <S.Option>
-          <span>Numbers</span>
-          <Checkbox
+          <S.Label>Numbers</S.Label>
+          <S.Checkbox
             checked={useNumbers}
             onChange={(e) => setUseNumbers(e.target.checked)}
-            color="secondary"
           />
         </S.Option>
         <S.Option>
-          <span>Symbols</span>
-          <Checkbox
+          <S.Label>Symbols</S.Label>
+          <S.Checkbox
             checked={useSymbols}
             onChange={(e) => setUseSymbols(e.target.checked)}
-            color="secondary"
           />
         </S.Option>
         <S.Option>
-          <span>Do not repeat characters</span>
-          <Checkbox
+          <S.Label>Do not repeat characters</S.Label>
+          <S.Checkbox
             checked={noRepeat}
             onChange={(e) => setNoRepeat(e.target.checked)}
-            color="secondary"
           />
         </S.Option>
       </S.Options>
