@@ -30,14 +30,20 @@ export const Generator = () => {
     for (let i = 0; pwd.length < passwordLength; i++) {
       const index = Math.floor(Math.random() * chars.length);
 
-      if (chars) {
-        pwd += chars[index];
-      } else if (chars && noRepeat) {
+      if (chars && !noRepeat) {
+        if (chars[index] !== pwd[pwd.length - 1]) {
+          pwd += chars[index];
+        }
+      }
+
+      if (chars && noRepeat) {
         if (!pwd.includes(chars[index])) {
           pwd += chars[index];
         }
-      } else {
-        pwd = "";
+      }
+
+      if (!chars) {
+        return;
       }
     }
 
@@ -45,10 +51,8 @@ export const Generator = () => {
   };
 
   const copyToClipboard = () => {
-    if (password) {
-      navigator.clipboard.writeText(password);
-      setOpen(true);
-    }
+    navigator.clipboard.writeText(password);
+    setOpen(true);
   };
 
   return (
