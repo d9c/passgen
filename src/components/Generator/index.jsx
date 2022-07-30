@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Checkbox, Snackbar } from "@mui/material";
 
 import * as S from "./styles";
 
@@ -26,14 +27,14 @@ export const Generator = () => {
     let pwd = "";
 
     for (let i = 0; i < passwordLength; i++) {
-      const rndIndex = Math.floor(Math.random() * chars.length);
+      const index = Math.floor(Math.random() * chars.length);
 
       if (chars && noRepeat) {
-        if (!pwd.includes(chars[rndIndex])) {
-          pwd += chars[rndIndex];
+        if (!pwd.includes(chars[index])) {
+          pwd += chars[index];
         }
       } else if (chars) {
-        pwd += chars[rndIndex];
+        pwd += chars[index];
       } else {
         pwd = "";
       }
@@ -51,8 +52,8 @@ export const Generator = () => {
 
   return (
     <S.Container>
-      <S.Password onClick={copyToClipboard}>
-        <span>{password}</span>
+      <S.Password type="button" variant="contained" onClick={copyToClipboard}>
+        {password}
       </S.Password>
       <S.Options>
         <S.Option>
@@ -60,7 +61,7 @@ export const Generator = () => {
           <S.Slider
             size="small"
             valueLabelDisplay="auto"
-            min={1}
+            min={6}
             max={50}
             value={passwordLength}
             onChange={(e) => setPasswordLength(e.target.value)}
@@ -68,37 +69,42 @@ export const Generator = () => {
         </S.Option>
         <S.Option>
           <span>Uppercase letters</span>
-          <S.Checkbox
+          <Checkbox
             checked={useUppercase}
             onChange={(e) => setUseUppercase(e.target.checked)}
+            color="secondary"
           />
         </S.Option>
         <S.Option>
           <span>Lowercase letters</span>
-          <S.Checkbox
+          <Checkbox
             checked={useLowerCase}
             onChange={(e) => setUseLowerCase(e.target.checked)}
+            color="secondary"
           />
         </S.Option>
         <S.Option>
           <span>Numbers</span>
-          <S.Checkbox
+          <Checkbox
             checked={useNumbers}
             onChange={(e) => setUseNumbers(e.target.checked)}
+            color="secondary"
           />
         </S.Option>
         <S.Option>
           <span>Symbols</span>
-          <S.Checkbox
+          <Checkbox
             checked={useSymbols}
             onChange={(e) => setUseSymbols(e.target.checked)}
+            color="secondary"
           />
         </S.Option>
         <S.Option>
           <span>Do not repeat characters</span>
-          <S.Checkbox
+          <Checkbox
             checked={noRepeat}
             onChange={(e) => setNoRepeat(e.target.checked)}
+            color="secondary"
           />
         </S.Option>
       </S.Options>
