@@ -26,14 +26,16 @@ export const Generator = () => {
     let pwd = "";
 
     for (let i = 0; i < passwordLength; i++) {
-      const randomIndex = Math.floor(Math.random() * chars.length);
+      const rndIndex = Math.floor(Math.random() * chars.length);
 
-      if (noRepeat) {
-        if (chars && !pwd.includes(chars[randomIndex])) {
-          pwd += chars[randomIndex];
+      if (chars && noRepeat) {
+        if (!pwd.includes(chars[rndIndex])) {
+          pwd += chars[rndIndex];
         }
       } else if (chars) {
-        pwd += chars[randomIndex];
+        pwd += chars[rndIndex];
+      } else {
+        pwd = "";
       }
     }
 
