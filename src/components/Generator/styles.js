@@ -69,11 +69,9 @@ export const Slider = styled(MuiSlider).attrs({
   && {
     width: 200px;
 
-    .MuiSlider-valueLabelOpen {
+    .MuiSlider-valueLabel {
       background-color: #ffffff;
-    }
-
-    .MuiSlider-valueLabelLabel {
+      font-family: "JetBrains Mono", sans-serif;
       color: #000000;
     }
   }
