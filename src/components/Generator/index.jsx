@@ -7,54 +7,50 @@ import * as S from "./styles";
 export const Generator = () => {
   const [password, setPassword] = useState("");
   const [settings, setSettings] = useState({
-    passwordLength: 16,
-    useUppercase: true,
-    useLowercase: true,
-    useNumbers: true,
-    useSymbols: true,
+    length: 16,
+    uppercase: true,
+    lowercase: true,
+    numbers: true,
+    symbols: true,
   });
-  const [characters, setCharacters] = useState("");
   const [checkCount, setCheckCount] = useState(0);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     generatePassword();
-  }, [settings.passwordLength, characters]);
-
-  useEffect(() => {
-    const upperCase = settings.useUppercase ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : "";
-    const lowerCase = settings.useLowercase ? "abcdefghijklmnopqrstuvwxyz" : "";
-    const numbers = settings.useNumbers ? "1234567890" : "";
-    const symbols = settings.useSymbols ? "!@#$%^&*~()[]{}" : "";
-    setCharacters(`${upperCase}${lowerCase}${numbers}${symbols}`);
   }, [
-    settings.useUppercase,
-    settings.useLowercase,
-    settings.useNumbers,
-    settings.useSymbols,
+    settings.length,
+    settings.uppercase,
+    settings.lowercase,
+    settings.numbers,
+    settings.symbols,
   ]);
 
   useEffect(() => {
-    let checkCount = [];
     const values = Object.values(settings);
-    values.forEach((value) => {
-      if (value === true) checkCount.push(value);
-    });
+    const checkCount = values.filter((value) => value === true);
     setCheckCount(checkCount.length);
   }, [checkCount]);
 
   const generatePassword = () => {
-    if (characters) {
-      let pwd = "";
-      for (let i = 0; pwd.length < settings.passwordLength; i++) {
-        const index = Math.floor(Math.random() * characters.length);
-        if (characters[index] !== pwd[pwd.length - 1]) pwd += characters[index];
+    let characters = "";
+    if (settings.uppercase) characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (settings.lowercase) characters += "abcdefghijklmnopqrstuvwxyz";
+    if (settings.numbers) characters += "1234567890";
+    if (settings.symbols) characters += "!@#$%^&*~()[]{}";
+
+    let password = "";
+    for (let i = 0; password.length < settings.length; i++) {
+      const index = Math.floor(Math.random() * characters.length);
+      if (characters[index] !== password[password.length - 1]) {
+        password += characters[index];
       }
-      setPassword(pwd);
     }
+
+    setPassword(password);
   };
 
-  const handleChange = (e) => {
+  const handleChangeValue = (e) => {
     const { name, value } = e.target;
 
     setSettings((prevSettings) => ({
@@ -63,7 +59,7 @@ export const Generator = () => {
     }));
   };
 
-  const handleCheck = (e) => {
+  const handleChangeChecked = (e) => {
     const { name, checked } = e.target;
 
     if (checked) {
@@ -71,7 +67,8 @@ export const Generator = () => {
         ...prevSettings,
         [name]: checked,
       }));
-      setCheckCount((prevTrueCount) => prevTrueCount + 1);
+
+      setCheckCount((prevCheckCount) => prevCheckCount + 1);
     }
 
     if (!checked && checkCount > 1) {
@@ -79,7 +76,8 @@ export const Generator = () => {
         ...prevSettings,
         [name]: checked,
       }));
-      setCheckCount((prevTrueCount) => prevTrueCount - 1);
+
+      setCheckCount((prevCheckCount) => prevCheckCount - 1);
     }
   };
 
@@ -109,41 +107,41 @@ export const Generator = () => {
             max={50}
             size="small"
             valueLabelDisplay="auto"
-            name="passwordLength"
-            value={settings.passwordLength}
-            onChange={handleChange}
+            name="length"
+            value={settings.length}
+            onChange={handleChangeValue}
           />
         </S.Option>
         <S.Option>
           <S.Label>Uppercase</S.Label>
           <S.Checkbox
-            name="useUppercase"
-            checked={settings.useUppercase}
-            onChange={handleCheck}
+            name="uppercase"
+            checked={settings.uppercase}
+            onChange={handleChangeChecked}
           />
         </S.Option>
         <S.Option>
           <S.Label>Lowercase</S.Label>
           <S.Checkbox
-            name="useLowercase"
-            checked={settings.useLowercase}
-            onChange={handleCheck}
+            name="lowercase"
+            checked={settings.lowercase}
+            onChange={handleChangeChecked}
           />
         </S.Option>
         <S.Option>
           <S.Label>Numbers</S.Label>
           <S.Checkbox
-            name="useNumbers"
-            checked={settings.useNumbers}
-            onChange={handleCheck}
+            name="numbers"
+            checked={settings.numbers}
+            onChange={handleChangeChecked}
           />
         </S.Option>
         <S.Option>
           <S.Label>Symbols</S.Label>
           <S.Checkbox
-            name="useSymbols"
-            checked={settings.useSymbols}
-            onChange={handleCheck}
+            name="symbols"
+            checked={settings.symbols}
+            onChange={handleChangeChecked}
           />
         </S.Option>
       </S.OptionsContainer>
