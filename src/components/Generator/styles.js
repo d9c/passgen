@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {
   Box as MuiBox,
-  IconButton as MuiIconButton,
   Slider as MuiSlider,
   Checkbox as MuiCheckbox,
   Snackbar as MuiSnackbar,
@@ -34,13 +33,6 @@ export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-`;
-
-export const IconButton = styled(MuiIconButton)`
-  && {
-    pointer-events: ${(props) => (props.$enabled ? "auto" : "none")};
-    opacity: ${(props) => (props.$enabled ? "1.0" : "0.5")};
-  }
 `;
 
 export const OptionsContainer = styled.div`
