@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { IconButton } from "@mui/material";
-import { ContentCopy as CopyIcon } from "@mui/icons-material";
+import {
+  ContentCopy as CopyIcon,
+  Cached as RefreshIcon,
+} from "@mui/icons-material";
 
 import * as S from "./styles";
 
@@ -8,46 +11,33 @@ export const Generator = () => {
   const [password, setPassword] = useState("");
   const [passwordLength, setPasswordLength] = useState(16);
   const [useUppercase, setUseUppercase] = useState(true);
-  const [useLowerCase, setUseLowerCase] = useState(true);
+  const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
-  const [useSymbols, setUseSymbols] = useState(false);
-  const [noRepeat, setNoRepeat] = useState(false);
+  const [useSymbols, setUseSymbols] = useState(true);
+  const [characters, setCharacters] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     generatePassword();
-  }, []);
+  }, [passwordLength, characters]);
 
-  const generatePassword = () => {
+  useEffect(() => {
     const upperCase = useUppercase ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : "";
-    const lowerCase = useLowerCase ? "abcdefghijklmnopqrstuvwxyz" : "";
+    const lowerCase = useLowercase ? "abcdefghijklmnopqrstuvwxyz" : "";
     const numbers = useNumbers ? "1234567890" : "";
     const symbols = useSymbols ? "!@#$%^&*~()[]{}" : "";
-    const chars = `${upperCase}${lowerCase}${numbers}${symbols}`;
+    setCharacters(`${upperCase}${lowerCase}${numbers}${symbols}`);
+  }, [useUppercase, useLowercase, useNumbers, useSymbols]);
 
-    let pwd = "";
-
-    for (let i = 0; pwd.length < passwordLength; i++) {
-      const index = Math.floor(Math.random() * chars.length);
-
-      if (chars && !noRepeat) {
-        if (chars[index] !== pwd[pwd.length - 1]) {
-          pwd += chars[index];
-        }
+  const generatePassword = () => {
+    if (characters) {
+      let pwd = "";
+      for (let i = 0; pwd.length < passwordLength; i++) {
+        const index = Math.floor(Math.random() * characters.length);
+        if (characters[index] !== pwd[pwd.length - 1]) pwd += characters[index];
       }
-
-      if (chars && noRepeat) {
-        if (!pwd.includes(chars[index])) {
-          pwd += chars[index];
-        }
-      }
-
-      if (!chars) {
-        return;
-      }
+      setPassword(pwd);
     }
-
-    setPassword(pwd);
   };
 
   const copyToClipboard = () => {
@@ -59,34 +49,42 @@ export const Generator = () => {
     <S.Container>
       <S.Password>
         <S.Label>{password}</S.Label>
-        <IconButton onClick={copyToClipboard}>
-          <CopyIcon color="secondary" />
-        </IconButton>
+        <S.ButtonsContainer>
+          <IconButton onClick={copyToClipboard}>
+            <CopyIcon color="secondary" />
+          </IconButton>
+          <S.IconButton
+            onClick={generatePassword}
+            $enabled={characters ? true : false}
+          >
+            <RefreshIcon color="secondary" />
+          </S.IconButton>
+        </S.ButtonsContainer>
       </S.Password>
-      <S.Options>
+      <S.OptionsContainer>
         <S.Option>
           <S.Label>Length</S.Label>
           <S.Slider
             size="small"
             valueLabelDisplay="auto"
-            min={1}
-            max={40}
             value={passwordLength}
             onChange={(e) => setPasswordLength(e.target.value)}
+            min={1}
+            max={50}
           />
         </S.Option>
         <S.Option>
-          <S.Label>Uppercase letters</S.Label>
+          <S.Label>Uppercase</S.Label>
           <S.Checkbox
             checked={useUppercase}
             onChange={(e) => setUseUppercase(e.target.checked)}
           />
         </S.Option>
         <S.Option>
-          <S.Label>Lowercase letters</S.Label>
+          <S.Label>Lowercase</S.Label>
           <S.Checkbox
-            checked={useLowerCase}
-            onChange={(e) => setUseLowerCase(e.target.checked)}
+            checked={useLowercase}
+            onChange={(e) => setUseLowercase(e.target.checked)}
           />
         </S.Option>
         <S.Option>
@@ -103,21 +101,11 @@ export const Generator = () => {
             onChange={(e) => setUseSymbols(e.target.checked)}
           />
         </S.Option>
-        <S.Option>
-          <S.Label>Do not repeat characters</S.Label>
-          <S.Checkbox
-            checked={noRepeat}
-            onChange={(e) => setNoRepeat(e.target.checked)}
-          />
-        </S.Option>
-      </S.Options>
-      <S.Button type="button" variant="contained" onClick={generatePassword}>
-        Generate
-      </S.Button>
+      </S.OptionsContainer>
       <S.Snackbar
         open={open}
         onClose={() => setOpen(false)}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         message="Copied to clipboard"
       />

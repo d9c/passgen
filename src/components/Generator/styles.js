@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import {
   Box as MuiBox,
+  IconButton as MuiIconButton,
   Slider as MuiSlider,
   Checkbox as MuiCheckbox,
-  Button as MuiButton,
   Snackbar as MuiSnackbar,
 } from "@mui/material";
 
@@ -13,7 +13,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 20px;
 
-  width: 500px;
+  width: 640px;
 `;
 
 export const Password = styled(MuiBox).attrs({
@@ -30,13 +30,20 @@ export const Password = styled(MuiBox).attrs({
   padding: 6px 16px;
 `;
 
-export const Label = styled.span`
-  font-family: "JetBrains Mono", sans-serif;
-  font-size: 16px;
-  color: #ffffff;
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 
-export const Options = styled.div`
+export const IconButton = styled(MuiIconButton)`
+  && {
+    pointer-events: ${(props) => (props.$enabled ? "auto" : "none")};
+    opacity: ${(props) => (props.$enabled ? "1.0" : "0.5")};
+  }
+`;
+
+export const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -48,6 +55,12 @@ export const Option = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const Label = styled.span`
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 16px;
+  color: #ffffff;
 `;
 
 export const Slider = styled(MuiSlider).attrs({
@@ -71,15 +84,6 @@ export const Checkbox = styled(MuiCheckbox).attrs({
 })`
   && {
     color: #ffffff;
-  }
-`;
-
-export const Button = styled(MuiButton).attrs({
-  color: "primary",
-})`
-  && {
-    text-transform: none;
-    width: 120px;
   }
 `;
 
