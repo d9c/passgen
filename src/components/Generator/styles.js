@@ -84,6 +84,7 @@ export const Snackbar = styled(MuiSnackbar)`
     }
 
     .MuiSnackbarContent-message {
+      font-family: "JetBrains Mono", sans-serif;
       color: #000000;
     }
   }
