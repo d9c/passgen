@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://d9c.github.io/password-generator",
+  "homepage": "https://d9c.github.io/password-generator/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
