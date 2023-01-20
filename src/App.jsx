@@ -1,12 +1,11 @@
-import React from "react";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from '@mui/material/styles';
 
-import * as S from "./App.styles";
+import { Generator } from './components/Generator';
 
-import { Generator } from "./components/Generator";
+import { MuiTheme } from './styles/mui';
+import { GlobalStyle } from './styles/global';
 
-import { MuiTheme } from "./styles/mui";
-import { GlobalStyle } from "./styles/global";
+import * as S from './App.styles';
 
 export const App = () => {
   return (

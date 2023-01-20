@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   Box as MuiBox,
   Slider as MuiSlider,
   Checkbox as MuiCheckbox,
   Snackbar as MuiSnackbar,
-} from "@mui/material";
+} from '@mui/material';
 
 export const Container = styled.div`
   display: flex;
@@ -50,27 +50,27 @@ export const Option = styled.div`
 `;
 
 export const Label = styled.span`
-  font-family: "JetBrains Mono", sans-serif;
+  font-family: 'JetBrains Mono', sans-serif;
   font-size: 16px;
   color: #ffffff;
 `;
 
 export const Slider = styled(MuiSlider).attrs({
-  color: "secondary",
+  color: 'secondary',
 })`
   && {
     width: 200px;
 
     .MuiSlider-valueLabel {
       background-color: #ffffff;
-      font-family: "JetBrains Mono", sans-serif;
+      font-family: 'JetBrains Mono', sans-serif;
       color: #000000;
     }
   }
 `;
 
 export const Checkbox = styled(MuiCheckbox).attrs({
-  color: "secondary",
+  color: 'secondary',
 })`
   && {
     color: #ffffff;
@@ -84,7 +84,7 @@ export const Snackbar = styled(MuiSnackbar)`
     }
 
     .MuiSnackbarContent-message {
-      font-family: "JetBrains Mono", sans-serif;
+      font-family: 'JetBrains Mono', sans-serif;
       color: #000000;
     }
   }

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { IconButton } from "@mui/material";
-import { ContentCopy, Cached } from "@mui/icons-material";
+import React, { useState, useEffect } from 'react';
+import { IconButton } from '@mui/material';
+import { ContentCopy, Cached } from '@mui/icons-material';
 
-import * as S from "./styles";
+import * as S from './styles';
 
 export const Generator = () => {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [settings, setSettings] = useState({
     length: 16,
     uppercase: true,
@@ -33,13 +33,13 @@ export const Generator = () => {
   }, [checkCount]);
 
   const generatePassword = () => {
-    let characters = "";
-    if (settings.uppercase) characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if (settings.lowercase) characters += "abcdefghijklmnopqrstuvwxyz";
-    if (settings.numbers) characters += "1234567890";
-    if (settings.symbols) characters += "!@#$%^&*~()[]{}";
+    let characters = '';
+    if (settings.uppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (settings.lowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
+    if (settings.numbers) characters += '1234567890';
+    if (settings.symbols) characters += '!@#$%^&*~()[]{}';
 
-    let password = "";
+    let password = '';
     for (let i = 0; password.length < settings.length; i++) {
       const index = Math.floor(Math.random() * characters.length);
       if (characters[index] !== password[password.length - 1]) {
@@ -149,7 +149,7 @@ export const Generator = () => {
         open={open}
         onClose={() => setOpen(false)}
         autoHideDuration={2000}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         message="Copied to clipboard"
       />
     </S.Container>

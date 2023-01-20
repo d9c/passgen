@@ -1,12 +1,15 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle({
-  "*": {
-    margin: "0",
-    padding: "0",
-    boxSizing: "border-box",
-  },
-  body: {
-    backgroundColor: "#141419",
-  },
-});
+const styled = { createGlobalStyle };
+
+export const GlobalStyle = styled.createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #141419;
+  }
+`;
