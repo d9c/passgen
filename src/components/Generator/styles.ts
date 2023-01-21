@@ -1,10 +1,7 @@
 import styled from 'styled-components';
-import {
-  Box as MuiBox,
-  Slider as MuiSlider,
-  Checkbox as MuiCheckbox,
-  Snackbar as MuiSnackbar,
-} from '@mui/material';
+import Slider from '@mui/material/Slider';
+import Checkbox from '@mui/material/Checkbox';
+import Snackbar from '@mui/material/Snackbar';
 
 export const Container = styled.div`
   display: flex;
@@ -14,13 +11,12 @@ export const Container = styled.div`
   width: 640px;
 `;
 
-export const Password = styled(MuiBox).attrs({
-  sx: { boxShadow: 2 },
-})`
+export const Password = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #697dff;
+  background-color: #111;
+  border: 1px solid #333;
   border-radius: 4px;
   width: 100%;
   padding: 6px 16px;
@@ -51,8 +47,8 @@ export const Label = styled.span`
   color: #fff;
 `;
 
-export const Slider = styled(MuiSlider).attrs({
-  color: 'secondary',
+export const MuiSlider = styled(Slider).attrs({
+  color: 'primary',
 })`
   && {
     width: 200px;
@@ -65,15 +61,15 @@ export const Slider = styled(MuiSlider).attrs({
   }
 `;
 
-export const Checkbox = styled(MuiCheckbox).attrs({
-  color: 'secondary',
+export const MuiCheckbox = styled(Checkbox).attrs({
+  color: 'primary',
 })`
   && {
     color: #fff;
   }
 `;
 
-export const Snackbar = styled(MuiSnackbar)`
+export const MuiSnackbar = styled(Snackbar)`
   && {
     .MuiPaper-root {
       background-color: #fff;

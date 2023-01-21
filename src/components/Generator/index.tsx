@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { IconButton } from '@mui/material';
-import { ContentCopy, Cached } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import Cached from '@mui/icons-material/Cached';
 
 import * as S from './styles';
 
@@ -22,9 +23,9 @@ const defaultSettings = {
 
 export const Generator = () => {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
-  const [password, setPassword] = useState('');
-  const [checkCount, setCheckCount] = useState(0);
-  const [open, setOpen] = useState(false);
+  const [password, setPassword] = useState<string>('');
+  const [checkCount, setCheckCount] = useState<number>(0);
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     generatePassword();
@@ -100,17 +101,17 @@ export const Generator = () => {
         <S.Label>{password}</S.Label>
         <S.ButtonsContainer>
           <IconButton onClick={copyToClipboard}>
-            <ContentCopy color="secondary" />
+            <ContentCopy color="primary" />
           </IconButton>
           <IconButton onClick={generatePassword}>
-            <Cached color="secondary" />
+            <Cached color="primary" />
           </IconButton>
         </S.ButtonsContainer>
       </S.Password>
       <S.OptionsContainer>
         <S.Option>
           <S.Label>Length</S.Label>
-          <S.Slider
+          <S.MuiSlider
             min={1}
             max={50}
             size="small"
@@ -122,7 +123,7 @@ export const Generator = () => {
         </S.Option>
         <S.Option>
           <S.Label>Uppercase</S.Label>
-          <S.Checkbox
+          <S.MuiCheckbox
             name="uppercase"
             checked={settings.uppercase}
             onChange={handleChangeChecked}
@@ -130,7 +131,7 @@ export const Generator = () => {
         </S.Option>
         <S.Option>
           <S.Label>Lowercase</S.Label>
-          <S.Checkbox
+          <S.MuiCheckbox
             name="lowercase"
             checked={settings.lowercase}
             onChange={handleChangeChecked}
@@ -138,7 +139,7 @@ export const Generator = () => {
         </S.Option>
         <S.Option>
           <S.Label>Numbers</S.Label>
-          <S.Checkbox
+          <S.MuiCheckbox
             name="numbers"
             checked={settings.numbers}
             onChange={handleChangeChecked}
@@ -146,14 +147,14 @@ export const Generator = () => {
         </S.Option>
         <S.Option>
           <S.Label>Symbols</S.Label>
-          <S.Checkbox
+          <S.MuiCheckbox
             name="symbols"
             checked={settings.symbols}
             onChange={handleChangeChecked}
           />
         </S.Option>
       </S.OptionsContainer>
-      <S.Snackbar
+      <S.MuiSnackbar
         open={open}
         onClose={() => setOpen(false)}
         autoHideDuration={2000}

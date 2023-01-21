@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material/styles';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 
 import { Generator } from './components/Generator';
 
