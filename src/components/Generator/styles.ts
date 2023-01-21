@@ -11,7 +11,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
   width: 640px;
 `;
 
@@ -21,10 +20,8 @@ export const Password = styled(MuiBox).attrs({
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: #697dff;
   border-radius: 4px;
-
   width: 100%;
   padding: 6px 16px;
 `;
@@ -39,7 +36,6 @@ export const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-
   width: 100%;
 `;
 
@@ -52,7 +48,7 @@ export const Option = styled.div`
 export const Label = styled.span`
   font-family: 'JetBrains Mono', sans-serif;
   font-size: 16px;
-  color: #ffffff;
+  color: #fff;
 `;
 
 export const Slider = styled(MuiSlider).attrs({
@@ -62,9 +58,9 @@ export const Slider = styled(MuiSlider).attrs({
     width: 200px;
 
     .MuiSlider-valueLabel {
-      background-color: #ffffff;
+      background-color: #fff;
       font-family: 'JetBrains Mono', sans-serif;
-      color: #000000;
+      color: #000;
     }
   }
 `;
@@ -73,19 +69,19 @@ export const Checkbox = styled(MuiCheckbox).attrs({
   color: 'secondary',
 })`
   && {
-    color: #ffffff;
+    color: #fff;
   }
 `;
 
 export const Snackbar = styled(MuiSnackbar)`
   && {
     .MuiPaper-root {
-      background-color: #ffffff;
+      background-color: #fff;
     }
 
     .MuiSnackbarContent-message {
       font-family: 'JetBrains Mono', sans-serif;
-      color: #000000;
+      color: #000;
     }
   }
 `;

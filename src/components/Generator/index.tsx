@@ -4,15 +4,25 @@ import { ContentCopy, Cached } from '@mui/icons-material';
 
 import * as S from './styles';
 
+type Settings = {
+  length: number;
+  uppercase: boolean;
+  lowercase: boolean;
+  numbers: boolean;
+  symbols: boolean;
+};
+
+const defaultSettings = {
+  length: 16,
+  uppercase: true,
+  lowercase: true,
+  numbers: true,
+  symbols: true,
+};
+
 export const Generator = () => {
+  const [settings, setSettings] = useState<Settings>(defaultSettings);
   const [password, setPassword] = useState('');
-  const [settings, setSettings] = useState({
-    length: 16,
-    uppercase: true,
-    lowercase: true,
-    numbers: true,
-    symbols: true,
-  });
   const [checkCount, setCheckCount] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -50,16 +60,14 @@ export const Generator = () => {
     setPassword(password);
   };
 
-  const handleChangeValue = (e) => {
-    const { name, value } = e.target;
-
+  const handleChangeValue = (e: Event, newValue: number | number[]) => {
     setSettings((prevSettings) => ({
       ...prevSettings,
-      [name]: value,
+      length: newValue as number,
     }));
   };
 
-  const handleChangeChecked = (e) => {
+  const handleChangeChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
 
     if (checked) {
