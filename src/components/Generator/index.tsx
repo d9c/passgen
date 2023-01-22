@@ -5,14 +5,6 @@ import Cached from '@mui/icons-material/Cached';
 
 import * as S from './styles';
 
-type Settings = {
-  length: number;
-  uppercase: boolean;
-  lowercase: boolean;
-  numbers: boolean;
-  symbols: boolean;
-};
-
 const defaultSettings = {
   length: 16,
   uppercase: true,
@@ -22,10 +14,10 @@ const defaultSettings = {
 };
 
 export const Generator = () => {
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
-  const [password, setPassword] = useState<string>('');
-  const [checkCount, setCheckCount] = useState<number>(0);
-  const [open, setOpen] = useState<boolean>(false);
+  const [settings, setSettings] = useState(defaultSettings);
+  const [password, setPassword] = useState('');
+  const [checkCount, setCheckCount] = useState(0);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     generatePassword();
