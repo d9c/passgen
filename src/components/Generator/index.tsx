@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
@@ -15,25 +15,13 @@ const defaultSettings = {
 
 export const Generator = () => {
   const [settings, setSettings] = useState(defaultSettings);
-  const [password, setPassword] = useState('');
-  const [checkCount, setCheckCount] = useState(0);
   const [open, setOpen] = useState(false);
+
+  const pwdRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     generatePassword();
-  }, [
-    settings.length,
-    settings.uppercase,
-    settings.lowercase,
-    settings.numbers,
-    settings.symbols,
-  ]);
-
-  useEffect(() => {
-    const values = Object.values(settings);
-    const checkCount = values.filter((value) => value === true);
-    setCheckCount(checkCount.length);
-  }, [checkCount]);
+  }, [settings]);
 
   const generatePassword = () => {
     let characters = '';
@@ -50,47 +38,46 @@ export const Generator = () => {
       }
     }
 
-    setPassword(password);
+    if (pwdRef.current) {
+      pwdRef.current.innerText = password;
+    }
   };
 
-  const handleChangeValue = (e: Event, newValue: number | number[]) => {
+  const handleSliderChange = (e: Event, newValue: number | number[]) => {
+    if (newValue !== settings.length) {
+      setSettings((prevSettings) => ({
+        ...prevSettings,
+        length: newValue as number,
+      }));
+    }
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+
+    const checkCount = Object.values(settings).filter((option) => {
+      return typeof option === 'boolean' && option === true;
+    }).length;
+
+    if (!checked && checkCount === 1) return;
+
     setSettings((prevSettings) => ({
       ...prevSettings,
-      length: newValue as number,
+      [name]: checked,
     }));
   };
 
-  const handleChangeChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-
-    if (checked) {
-      setSettings((prevSettings) => ({
-        ...prevSettings,
-        [name]: checked,
-      }));
-
-      setCheckCount((prevCheckCount) => prevCheckCount + 1);
-    }
-
-    if (!checked && checkCount > 1) {
-      setSettings((prevSettings) => ({
-        ...prevSettings,
-        [name]: checked,
-      }));
-
-      setCheckCount((prevCheckCount) => prevCheckCount - 1);
-    }
-  };
-
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(password);
-    setOpen(true);
+    if (pwdRef.current) {
+      navigator.clipboard.writeText(pwdRef.current.innerText);
+      setOpen(true);
+    }
   };
 
   return (
     <S.Container>
       <S.Password>
-        <S.Label>{password}</S.Label>
+        <S.Label ref={pwdRef} />
         <S.ButtonsContainer>
           <IconButton onClick={copyToClipboard}>
             <ContentCopy color="primary" />
@@ -108,9 +95,8 @@ export const Generator = () => {
             max={50}
             size="small"
             valueLabelDisplay="auto"
-            name="length"
             value={settings.length}
-            onChange={handleChangeValue}
+            onChange={handleSliderChange}
           />
         </S.Option>
         <S.Option>
@@ -118,7 +104,7 @@ export const Generator = () => {
           <S.MuiCheckbox
             name="uppercase"
             checked={settings.uppercase}
-            onChange={handleChangeChecked}
+            onChange={handleCheckboxChange}
           />
         </S.Option>
         <S.Option>
@@ -126,7 +112,7 @@ export const Generator = () => {
           <S.MuiCheckbox
             name="lowercase"
             checked={settings.lowercase}
-            onChange={handleChangeChecked}
+            onChange={handleCheckboxChange}
           />
         </S.Option>
         <S.Option>
@@ -134,7 +120,7 @@ export const Generator = () => {
           <S.MuiCheckbox
             name="numbers"
             checked={settings.numbers}
-            onChange={handleChangeChecked}
+            onChange={handleCheckboxChange}
           />
         </S.Option>
         <S.Option>
@@ -142,7 +128,7 @@ export const Generator = () => {
           <S.MuiCheckbox
             name="symbols"
             checked={settings.symbols}
-            onChange={handleChangeChecked}
+            onChange={handleCheckboxChange}
           />
         </S.Option>
       </S.OptionsContainer>
