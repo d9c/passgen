@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import IconButton from '@mui/material/IconButton';
+import { motion } from 'framer-motion';
+
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
 
@@ -79,12 +80,22 @@ export const Generator = () => {
       <S.Password>
         <S.Label ref={pwdRef} />
         <S.ButtonsContainer>
-          <IconButton onClick={copyToClipboard}>
+          <S.IconButton
+            onClick={copyToClipboard}
+            as={motion.button}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <ContentCopy color="primary" />
-          </IconButton>
-          <IconButton onClick={generatePassword}>
+          </S.IconButton>
+          <S.IconButton
+            onClick={generatePassword}
+            as={motion.button}
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
+          >
             <Cached color="primary" />
-          </IconButton>
+          </S.IconButton>
         </S.ButtonsContainer>
       </S.Password>
       <S.OptionsContainer>

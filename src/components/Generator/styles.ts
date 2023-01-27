@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Slider from '@mui/material/Slider';
 import Checkbox from '@mui/material/Checkbox';
 import Snackbar from '@mui/material/Snackbar';
@@ -26,6 +27,13 @@ export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+`;
+
+export const IconButton = styled.button`
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
 `;
 
 export const OptionsContainer = styled.div`
