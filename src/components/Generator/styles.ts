@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import Slider from '@mui/material/Slider';
 import Checkbox from '@mui/material/Checkbox';
@@ -29,11 +30,18 @@ export const ButtonsContainer = styled.div`
   gap: 5px;
 `;
 
-export const IconButton = styled.button`
+export const IconButton = styled.button.attrs({
+  as: motion.button,
+  whileTap: { scale: 0.8 },
+})`
   background: none;
   border: none;
   width: 40px;
   height: 40px;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const OptionsContainer = styled.div`
