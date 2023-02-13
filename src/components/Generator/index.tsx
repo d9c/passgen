@@ -79,12 +79,16 @@ export const Generator = () => {
       <S.Password>
         <S.Label ref={pwdRef} />
         <S.ButtonsContainer>
-          <S.IconButton onClick={copyToClipboard}>
-            <ContentCopy color="primary" />
-          </S.IconButton>
-          <S.IconButton onClick={generatePassword}>
-            <Cached color="primary" />
-          </S.IconButton>
+          <S.MuiTooltip title="Copy to Clipboard" placement="top">
+            <S.IconButton onClick={copyToClipboard}>
+              <ContentCopy color="primary" />
+            </S.IconButton>
+          </S.MuiTooltip>
+          <S.MuiTooltip title="New Password" placement="top">
+            <S.IconButton onClick={generatePassword}>
+              <Cached color="primary" />
+            </S.IconButton>
+          </S.MuiTooltip>
         </S.ButtonsContainer>
       </S.Password>
       <S.OptionsContainer>
