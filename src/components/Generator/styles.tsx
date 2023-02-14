@@ -102,11 +102,11 @@ export const MuiSnackbar = styled(Snackbar)`
 
 export const MuiTooltip = muiStyled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
-))(() => ({
+))({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#FFF',
     fontFamily: 'JetBrains Mono, sans-serif',
     fontSize: '12px',
     color: '#000',
   },
-}));
+});
