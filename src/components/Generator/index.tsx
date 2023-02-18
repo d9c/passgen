@@ -5,6 +5,14 @@ import Cached from '@mui/icons-material/Cached';
 
 import * as S from './styles';
 
+type Settings = {
+  length: number;
+  uppercase: boolean;
+  lowercase: boolean;
+  numbers: boolean;
+  symbols: boolean;
+};
+
 const defaultSettings = {
   length: 16,
   uppercase: true,
@@ -14,8 +22,8 @@ const defaultSettings = {
 };
 
 export const Generator = () => {
-  const [settings, setSettings] = useState(defaultSettings);
-  const [open, setOpen] = useState(false);
+  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const [open, setOpen] = useState<boolean>(false);
 
   const pwdRef = useRef<HTMLSpanElement>(null);
 
