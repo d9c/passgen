@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { styled as muiStyled } from '@mui/material/styles';
-import { motion } from 'framer-motion';
 
 import Slider from '@mui/material/Slider';
 import Checkbox from '@mui/material/Checkbox';
@@ -19,8 +18,8 @@ export const Password = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
-  border: 1px solid #333;
+  background-color: #111111;
+  border: 1px solid #333333;
   border-radius: 4px;
   width: 100%;
   padding: 6px 16px;
@@ -30,20 +29,6 @@ export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-`;
-
-export const IconButton = styled.button.attrs({
-  as: motion.button,
-  whileTap: { scale: 0.8 },
-})`
-  background: none;
-  border: none;
-  width: 40px;
-  height: 40px;
-
-  svg {
-    cursor: pointer;
-  }
 `;
 
 export const OptionsContainer = styled.div`
@@ -62,7 +47,7 @@ export const Option = styled.div`
 export const Label = styled.span`
   font-family: 'JetBrains Mono', sans-serif;
   font-size: 16px;
-  color: #fff;
+  color: #ffffff;
 `;
 
 export const MuiSlider = styled(Slider).attrs({
@@ -72,9 +57,9 @@ export const MuiSlider = styled(Slider).attrs({
     width: 200px;
 
     .MuiSlider-valueLabel {
-      background-color: #fff;
+      background-color: #ffffff;
       font-family: 'JetBrains Mono', sans-serif;
-      color: #000;
+      color: #000000;
     }
   }
 `;
@@ -83,19 +68,19 @@ export const MuiCheckbox = styled(Checkbox).attrs({
   color: 'primary',
 })`
   && {
-    color: #fff;
+    color: #ffffff;
   }
 `;
 
 export const MuiSnackbar = styled(Snackbar)`
   && {
     .MuiPaper-root {
-      background-color: #fff;
+      background-color: #ffffff;
     }
 
     .MuiSnackbarContent-message {
       font-family: 'JetBrains Mono', sans-serif;
-      color: #000;
+      color: #000000;
     }
   }
 `;
@@ -104,9 +89,9 @@ export const MuiTooltip = muiStyled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#ffffff',
     fontFamily: 'JetBrains Mono, sans-serif',
     fontSize: '12px',
-    color: '#000',
+    color: '#000000',
   },
 });

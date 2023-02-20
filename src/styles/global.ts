@@ -10,6 +10,6 @@ export const GlobalStyle = styled.createGlobalStyle`
   }
 
   body {
-    background-color: #000;
+    background-color: #000000;
   }
 `;
