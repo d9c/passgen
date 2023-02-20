@@ -4,6 +4,8 @@ import IconButton from '@mui/material/IconButton';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
 
+import { MuiTooltip } from '../MuiTooltip';
+
 import * as S from './styles';
 
 type Settings = {
@@ -89,16 +91,16 @@ export const Generator = () => {
       <S.Password>
         <S.Label ref={pwdRef} />
         <S.ButtonsContainer>
-          <S.MuiTooltip title="Copy to Clipboard" placement="top">
+          <MuiTooltip title="Copy to Clipboard" placement="top">
             <IconButton onClick={copyToClipboard}>
               <ContentCopy color="primary" />
             </IconButton>
-          </S.MuiTooltip>
-          <S.MuiTooltip title="New Password" placement="top">
+          </MuiTooltip>
+          <MuiTooltip title="New Password" placement="top">
             <IconButton onClick={generatePassword}>
               <Cached color="primary" />
             </IconButton>
-          </S.MuiTooltip>
+          </MuiTooltip>
         </S.ButtonsContainer>
       </S.Password>
       <S.OptionsContainer>
