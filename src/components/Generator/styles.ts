@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { styled as muiStyled } from '@mui/material/styles';
 
 import Slider from '@mui/material/Slider';
 import Checkbox from '@mui/material/Checkbox';
 import Snackbar from '@mui/material/Snackbar';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
 export const Container = styled.div`
   display: flex;
@@ -84,14 +82,3 @@ export const MuiSnackbar = styled(Snackbar)`
     }
   }
 `;
-
-export const MuiTooltip = muiStyled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '#ffffff',
-    fontFamily: 'JetBrains Mono, sans-serif',
-    fontSize: '12px',
-    color: '#000000',
-  },
-});
