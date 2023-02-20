@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ChangeEvent } from 'react';
 
+import IconButton from '@mui/material/IconButton';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
 
@@ -36,12 +37,13 @@ export const Generator = () => {
     if (settings.uppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (settings.lowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
     if (settings.numbers) characters += '1234567890';
-    if (settings.symbols) characters += '!@#$%^&*~()[]{}';
+    if (settings.symbols) characters += '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
 
     let password = '';
     for (let i = 0; password.length < settings.length; i++) {
       const index = Math.floor(Math.random() * characters.length);
-      if (characters[index] !== password[password.length - 1]) {
+      const isRepeat = characters[index] === password[password.length - 1];
+      if (!isRepeat) {
         password += characters[index];
       }
     }
@@ -60,7 +62,7 @@ export const Generator = () => {
     }
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
 
     const checkCount = Object.values(settings).filter((option) => {
@@ -88,14 +90,14 @@ export const Generator = () => {
         <S.Label ref={pwdRef} />
         <S.ButtonsContainer>
           <S.MuiTooltip title="Copy to Clipboard" placement="top">
-            <S.IconButton onClick={copyToClipboard}>
+            <IconButton onClick={copyToClipboard}>
               <ContentCopy color="primary" />
-            </S.IconButton>
+            </IconButton>
           </S.MuiTooltip>
           <S.MuiTooltip title="New Password" placement="top">
-            <S.IconButton onClick={generatePassword}>
+            <IconButton onClick={generatePassword}>
               <Cached color="primary" />
-            </S.IconButton>
+            </IconButton>
           </S.MuiTooltip>
         </S.ButtonsContainer>
       </S.Password>
