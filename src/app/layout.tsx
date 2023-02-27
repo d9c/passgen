@@ -9,10 +9,6 @@ import { GlobalStyle } from '@/styles/global';
 
 import * as S from './layout.styles';
 
-export const metadata = {
-  title: 'Password Generator',
-};
-
 export default function RootLayout({
   children,
 }: {
