@@ -2,13 +2,18 @@
 
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 
+import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+
+import Snackbar from '@mui/material/Snackbar';
+import Slider from '@mui/material/Slider';
+
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
 
-import { MuiTooltip } from '../MuiTooltip';
+import { Checkbox } from './mui/Checkbox';
 
-import * as S from './styles';
+// move all mui components to its own component and use `styled`
 
 type Settings = {
   length: number;
@@ -89,74 +94,117 @@ export const Generator = () => {
   };
 
   return (
-    <S.Container>
-      <S.Password>
-        <S.Label ref={pwdRef} />
-        <S.ButtonsContainer>
-          <MuiTooltip title="Copy to Clipboard" placement="top">
+    <div className="flex w-[640px] flex-col items-center gap-[20px]">
+      <div className="flex w-full items-center justify-between rounded-[4px] border-[1px] border-solid border-[#333] bg-[#111] px-[16px] py-[6px]">
+        <span className="text-[16px] text-[#FFF]" ref={pwdRef} />
+        <div className="flex items-center gap-[5px]">
+          <Tooltip
+            title="Copy to Clipboard"
+            placement="top"
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  backgroundColor: '#FFF',
+                  fontFamily: 'JetBrains Mono, sans-serif',
+                  fontSize: '12px',
+                  color: '#000',
+                },
+              },
+            }}
+          >
             <IconButton onClick={copyToClipboard}>
               <ContentCopy color="primary" />
             </IconButton>
-          </MuiTooltip>
-          <MuiTooltip title="New Password" placement="top">
+          </Tooltip>
+          <Tooltip
+            title="New Password"
+            placement="top"
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  backgroundColor: '#FFF',
+                  fontFamily: 'JetBrains Mono, sans-serif',
+                  fontSize: '12px',
+                  color: '#000',
+                },
+              },
+            }}
+          >
             <IconButton onClick={generatePassword}>
               <Cached color="primary" />
             </IconButton>
-          </MuiTooltip>
-        </S.ButtonsContainer>
-      </S.Password>
-      <S.OptionsContainer>
-        <S.Option>
-          <S.Label>Length</S.Label>
-          <S.MuiSlider
+          </Tooltip>
+        </div>
+      </div>
+      <div className="flex w-full flex-col gap-[10px]">
+        <div className="flex items-center justify-between">
+          <span className="text-[16px] text-[#FFF]">Length</span>
+          <Slider
             min={1}
             max={50}
             size="small"
             valueLabelDisplay="auto"
             value={settings.length}
             onChange={handleSliderChange}
+            sx={{
+              width: '200px',
+              '& .MuiSlider-valueLabel': {
+                backgroundColor: '#FFF',
+                fontFamily: 'JetBrains Mono',
+                color: '#000',
+              },
+            }}
           />
-        </S.Option>
-        <S.Option>
-          <S.Label>Uppercase</S.Label>
-          <S.MuiCheckbox
+        </div>
+        <div className="content-bet flex items-center justify-between">
+          <span className="text-[16px] text-[#FFF]">Uppercase</span>
+          <Checkbox
             name="uppercase"
             checked={settings.uppercase}
             onChange={handleCheckboxChange}
           />
-        </S.Option>
-        <S.Option>
-          <S.Label>Lowercase</S.Label>
-          <S.MuiCheckbox
+        </div>
+        <div className="content-bet flex items-center justify-between">
+          <span className="text-[16px] text-[#FFF]">Lowercase</span>
+          <Checkbox
+            color="primary"
             name="lowercase"
             checked={settings.lowercase}
             onChange={handleCheckboxChange}
           />
-        </S.Option>
-        <S.Option>
-          <S.Label>Numbers</S.Label>
-          <S.MuiCheckbox
+        </div>
+        <div className="content-bet flex items-center justify-between">
+          <span className="text-[16px] text-[#FFF]">Numbers</span>
+          <Checkbox
             name="numbers"
             checked={settings.numbers}
             onChange={handleCheckboxChange}
           />
-        </S.Option>
-        <S.Option>
-          <S.Label>Symbols</S.Label>
-          <S.MuiCheckbox
+        </div>
+        <div className="content-bet flex items-center justify-between">
+          <span className="text-[16px] text-[#FFF]">Symbols</span>
+          <Checkbox
             name="symbols"
             checked={settings.symbols}
             onChange={handleCheckboxChange}
           />
-        </S.Option>
-      </S.OptionsContainer>
-      <S.MuiSnackbar
+        </div>
+      </div>
+      <Snackbar
         open={open}
         onClose={() => setOpen(false)}
         autoHideDuration={2000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         message="Copied to clipboard"
+        ContentProps={{
+          sx: {
+            backgroundColor: '#FFF',
+            fontFamily: 'JetBrains Mono',
+            fontSize: '14px',
+            color: '#000',
+          },
+        }}
       />
-    </S.Container>
+    </div>
   );
 };

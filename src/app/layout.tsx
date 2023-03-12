@@ -1,13 +1,10 @@
-'use client';
+import '@/styles/tailwind.css';
 
-import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import Providers from './providers';
 
-import StyledComponentsRegistry from '@/lib/registry';
-
-import { MuiTheme } from '@/styles/mui';
-import { GlobalStyle } from '@/styles/global';
-
-import * as S from './layout.styles';
+export const metadata = {
+  title: 'Password Generator',
+};
 
 export default function RootLayout({
   children,
@@ -16,13 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={MuiTheme}>
-            <S.Wrapper>{children}</S.Wrapper>
-          </ThemeProvider>
-          <GlobalStyle />
-        </StyledComponentsRegistry>
+      <body className="m-0 box-border bg-[#000] p-0 font-['Jetbrains_Mono']">
+        <Providers>
+          <div className="flex h-screen items-center justify-center">
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );
