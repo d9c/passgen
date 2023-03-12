@@ -2,18 +2,12 @@
 
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 
-import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-
-import Snackbar from '@mui/material/Snackbar';
-import Slider from '@mui/material/Slider';
 
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
 
-import { Checkbox } from './mui/Checkbox';
-
-// move all mui components to its own component and use `styled`
+import { Checkbox, Snackbar, Slider, Tooltip } from './MuiStyled';
 
 type Settings = {
   length: number;
@@ -98,38 +92,12 @@ export const Generator = () => {
       <div className="flex w-full items-center justify-between rounded-[4px] border-[1px] border-solid border-[#333] bg-[#111] px-[16px] py-[6px]">
         <span className="text-[16px] text-[#FFF]" ref={pwdRef} />
         <div className="flex items-center gap-[5px]">
-          <Tooltip
-            title="Copy to Clipboard"
-            placement="top"
-            componentsProps={{
-              tooltip: {
-                sx: {
-                  backgroundColor: '#FFF',
-                  fontFamily: 'JetBrains Mono, sans-serif',
-                  fontSize: '12px',
-                  color: '#000',
-                },
-              },
-            }}
-          >
+          <Tooltip title="Copy to Clipboard" placement="top">
             <IconButton onClick={copyToClipboard}>
               <ContentCopy color="primary" />
             </IconButton>
           </Tooltip>
-          <Tooltip
-            title="New Password"
-            placement="top"
-            componentsProps={{
-              tooltip: {
-                sx: {
-                  backgroundColor: '#FFF',
-                  fontFamily: 'JetBrains Mono, sans-serif',
-                  fontSize: '12px',
-                  color: '#000',
-                },
-              },
-            }}
-          >
+          <Tooltip title="New Password" placement="top">
             <IconButton onClick={generatePassword}>
               <Cached color="primary" />
             </IconButton>
@@ -146,14 +114,6 @@ export const Generator = () => {
             valueLabelDisplay="auto"
             value={settings.length}
             onChange={handleSliderChange}
-            sx={{
-              width: '200px',
-              '& .MuiSlider-valueLabel': {
-                backgroundColor: '#FFF',
-                fontFamily: 'JetBrains Mono',
-                color: '#000',
-              },
-            }}
           />
         </div>
         <div className="content-bet flex items-center justify-between">
@@ -196,14 +156,6 @@ export const Generator = () => {
         autoHideDuration={2000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         message="Copied to clipboard"
-        ContentProps={{
-          sx: {
-            backgroundColor: '#FFF',
-            fontFamily: 'JetBrains Mono',
-            fontSize: '14px',
-            color: '#000',
-          },
-        }}
       />
     </div>
   );
