@@ -39,17 +39,15 @@ export const Generator = () => {
     let characters = '';
     if (settings.uppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (settings.lowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
-    if (settings.numbers) characters += '1234567890';
-    if (settings.symbols) characters += '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
+    if (settings.numbers) characters += '0123456789';
+    if (settings.symbols) characters += '~!@#$%^&*()_+`-={}[]|\\:;"<>,.?/';
 
-    let password = '';
-    for (let i = 0; password.length < settings.length; i++) {
-      const index = Math.floor(Math.random() * characters.length);
-      const isRepeat = characters[index] === password[password.length - 1];
-      if (!isRepeat) {
-        password += characters[index];
-      }
-    }
+    const randomValues = new Uint32Array(settings.length);
+    window.crypto.getRandomValues(randomValues);
+
+    const password = Array.from(randomValues, (value) => {
+      return characters.charAt(value % characters.length);
+    }).join('');
 
     if (pwdRef.current) {
       pwdRef.current.innerText = password;
