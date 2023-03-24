@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, ChangeEvent } from 'react';
+import { useState, useRef, useCallback, useEffect, ChangeEvent } from 'react';
 
 import IconButton from '@mui/material/IconButton';
 
@@ -31,11 +31,7 @@ export const Generator = () => {
 
   const pwdRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
-    generatePassword();
-  }, [settings]);
-
-  const generatePassword = () => {
+  const generatePassword = useCallback(() => {
     let characters = '';
     if (settings.uppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (settings.lowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
@@ -52,7 +48,11 @@ export const Generator = () => {
     if (pwdRef.current) {
       pwdRef.current.innerText = password;
     }
-  };
+  }, [settings]);
+
+  useEffect(() => {
+    generatePassword();
+  }, [generatePassword]);
 
   const handleSliderChange = (e: Event, newValue: number | number[]) => {
     if (newValue !== settings.length) {
