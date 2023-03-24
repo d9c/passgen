@@ -92,6 +92,11 @@ export default function Home() {
     }
   };
 
+  const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') return;
+    setOpen(false);
+  };
+
   return (
     <div className="flex w-[640px] flex-col items-center gap-[20px]">
       <div className="flex w-full items-center justify-between rounded-[4px] border-[1px] border-solid border-[#333] bg-[#111] px-[16px] py-[6px]">
@@ -157,7 +162,7 @@ export default function Home() {
       </div>
       <Snackbar
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={handleClose}
         autoHideDuration={2000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         message="Copied to clipboard"
