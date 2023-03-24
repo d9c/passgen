@@ -32,21 +32,28 @@ export default function Home() {
   const pwdRef = useRef<HTMLSpanElement>(null);
 
   const generatePassword = useCallback(() => {
-    let characters = '';
-    if (settings.uppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (settings.lowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
-    if (settings.numbers) characters += '0123456789';
-    if (settings.symbols) characters += '~!@#$%^&*()_+`-={}[]|\\:;"<>,.?/';
+    const { uppercase, lowercase, numbers, symbols, length } = settings;
 
-    const randomValues = new Uint32Array(settings.length);
-    window.crypto.getRandomValues(randomValues);
+    const characters = [
+      uppercase && 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      lowercase && 'abcdefghijklmnopqrstuvwxyz',
+      numbers && '0123456789',
+      symbols && '~!@#$%^&*()_+`-={}[]|\\:;"<>,.?/',
+    ]
+      .filter(Boolean)
+      .join('');
 
-    const password = Array.from(randomValues, (value) => {
-      return characters.charAt(value % characters.length);
-    }).join('');
+    const randomValues = new Uint32Array(length);
+    crypto.getRandomValues(randomValues);
+
+    const password = new Array(length);
+    for (let i = 0; i < length; i++) {
+      password[i] = characters.charAt(randomValues[i] % characters.length);
+    }
+    const passwordString = password.join('');
 
     if (pwdRef.current) {
-      pwdRef.current.innerText = password;
+      pwdRef.current.innerText = passwordString;
     }
   }, [settings]);
 
