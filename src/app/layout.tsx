@@ -4,6 +4,9 @@ import Providers from './providers';
 
 export const metadata = {
   title: 'Password Generator',
+  icons: {
+    shortcut: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
