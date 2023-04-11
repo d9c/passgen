@@ -3,7 +3,7 @@ import '@/styles/tailwind.css';
 import Providers from './providers';
 
 export const metadata = {
-  title: 'Password Generator',
+  title: 'PassGen',
   icons: {
     shortcut: '/favicon.png',
   },
