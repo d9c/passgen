@@ -99,7 +99,7 @@ export const Generator = () => {
 
   return (
     <div className="rounded-[10px] bg-gradient-to-br from-[#8bc6ec] to-[#9599e2] p-[1px]">
-      <div className="flex w-[720px] flex-col items-center gap-[20px] rounded-[10px] p-[50px]">
+      <div className="flex w-[720px] flex-col items-center gap-[20px] rounded-[10px] bg-[#000] p-[50px]">
         <div className="flex w-full items-center justify-between rounded-[5px] border-[1px] border-solid border-[#333] bg-[#111] px-[16px] py-[6px]">
           <span className="text-[16px] text-[#FFF]" ref={pwdRef} />
           <div className="flex items-center gap-[5px]">
