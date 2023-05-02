@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="m-0 box-border bg-[#000] p-0 font-['Jetbrains_Mono']">
+      <body className="bg-[#000] font-['Jetbrains_Mono'] ">
         <Providers>
           <div className="flex h-screen items-center justify-center">
             {children}
