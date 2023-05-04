@@ -2,7 +2,7 @@
 
 import GitHub from '@mui/icons-material/GitHub';
 
-import { Generator } from '@/components/Generator';
+import { Generator } from '@/components/generator';
 
 export default function Home() {
   return (

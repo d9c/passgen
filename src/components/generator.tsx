@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import Cached from '@mui/icons-material/Cached';
 
-import { Checkbox, Snackbar, Slider, Tooltip } from '@/components/MuiStyled';
+import { Checkbox, Snackbar, Slider, Tooltip } from '@/components/mui-styled';
 
 type Settings = {
   length: number;
