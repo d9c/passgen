@@ -1,6 +1,13 @@
 import '@/styles/tailwind.css';
 
+import { JetBrains_Mono } from 'next/font/google';
+
 import Providers from './providers';
+
+const font = JetBrains_Mono({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const metadata = {
   title: 'PassGen',
@@ -16,11 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#000] font-['Jetbrains_Mono'] ">
-        <Providers>
-          <div className="flex h-screen items-center justify-center">
-            {children}
-          </div>
+      <body className={font.className}>
+        <Providers font={font.className.replace('className', 'JetBrains_Mono')}>
+          {children}
         </Providers>
       </body>
     </html>

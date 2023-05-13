@@ -13,7 +13,6 @@ export const Slider = styled(MuiSlider)({
   width: '200px',
   '& .MuiSlider-valueLabel': {
     backgroundColor: '#FFF',
-    fontFamily: 'JetBrains Mono',
     color: '#000',
   },
 });
@@ -27,7 +26,6 @@ export const Checkbox = styled(MuiCheckbox)({
 export const Snackbar = styled(MuiSnackbar)({
   '& .MuiPaper-root': {
     backgroundColor: '#FFF',
-    fontFamily: 'JetBrains Mono',
     fontSize: '14px',
     color: '#000',
   },
@@ -38,7 +36,6 @@ export const Tooltip = styled(({ className, ...props }: TooltipProps) => (
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#FFF',
-    fontFamily: 'JetBrains Mono, sans-serif',
     fontSize: '12px',
     color: '#000',
   },
