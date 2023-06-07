@@ -12,7 +12,7 @@ const font = JetBrains_Mono({
 export const metadata = {
   title: 'PassGen',
   icons: {
-    shortcut: '/favicon.png',
+    shortcut: '/favicon.svg',
   },
 };
 
